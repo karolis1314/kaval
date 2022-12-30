@@ -1,0 +1,1 @@
+CREATE DATABASE dentist_clinic;

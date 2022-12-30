@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres
+    container_name: postgres-sql
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+  kaval:
+    image: karolisval/kaval:0.0.1
+    container_name: kaval
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-sql:5432/dentist_clinic
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+    volumes:
+      - ./kaval:/kaval
+    restart: unless-stopped
+
+volumes:
+  postgres:
+  kaval:
