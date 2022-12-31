@@ -30,6 +30,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/api/v1/appointment/**")
                 .authenticated()
                 .requestMatchers("/api/v1/users/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/sms/**").permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

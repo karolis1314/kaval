@@ -25,3 +25,7 @@ spring:
           starttls:
             enable: true
             required: true
+  twilio:
+    accountSid: AC32a2e5b7bf4da0a095428b9a9cf5853c
+    authToken: 08fab1c6317a00ceb037c7365ece7a2a
+    trialNumber: +16692805381

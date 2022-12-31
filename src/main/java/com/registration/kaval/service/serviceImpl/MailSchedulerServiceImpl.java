@@ -33,7 +33,7 @@ public class MailSchedulerServiceImpl {
 //        logger.info(date.toString());
 //    }
 
-    @Scheduled(cron = "0 12 * * ?")
+    @Scheduled(cron = "0 0 12 * * ?")
     @Async
     public void sendEmail() {
         try {
