@@ -1,0 +1,11 @@
+apiVersion: v2
+name: kaval
+description: Kaval application for dental clinic to manage appointments.
+type: application
+version: 0.0.1
+appVersion: "0.0.1"
+dependencies:
+  - name: postgresql
+    version: 12.1.6
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
