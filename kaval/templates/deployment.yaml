@@ -27,17 +27,17 @@ spec:
       serviceAccountName: {{ include "kaval.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      initContainers:
-        - name: postgresql-check-db-ready
-          image: docker.io/bitnami/postgresql:15.1.0-debian-11-r12
-          command:
-          - sh
-          - -c
-          - |
-            until pg_isready -h kaval-postgresql -p {{ .Values.postgresql.service.port }}; do
-              echo "$(date) - waiting for postgres..."
-              sleep 10
-            done
+{{/*      initContainers:*/}}
+{{/*        - name: postgresql-check-db-ready*/}}
+{{/*          image: docker.io/bitnami/postgresql:15.1.0-debian-11-r12*/}}
+{{/*          command:*/}}
+{{/*          - sh*/}}
+{{/*          - -c*/}}
+{{/*          - |*/}}
+{{/*            until pg_isready -h kaval-postgresql -p {{ .Values.postgresql.service.port }}; do*/}}
+{{/*              echo "$(date) - waiting for postgres..."*/}}
+{{/*              sleep 10*/}}
+{{/*            done*/}}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -71,7 +71,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ include "kaval.fullname" . }}
-                  key: postgresql-db
+                  key: POSTGRESQL_DATABASE
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
